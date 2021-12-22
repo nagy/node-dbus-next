@@ -1,10 +1,12 @@
-const constants = require('./lib/constants');
-const MessageBus = require('./lib/bus');
-const errors = require('./lib/errors');
-const {Variant} = require('./lib//variant');
-const {Message} = require('./lib/message-type.js');
-const iface = require('./lib/service/interface');
-const createConnection = require('./lib/connection.js');
+import constants from './lib/constants.js';
+import MessageBus from './lib/bus.js';
+import errors from './lib/errors.js';
+import { Variant } from './lib/variant.js';
+import { Message } from './lib/message-type.js';
+import iface from './lib/service/interface.js';
+import validators from './lib/validators.js';
+import createConnection from './lib/connection.js';
+import { setBigIntCompat } from './lib/library-options.js'
 
 let createClient = function(params) {
   let connection = createConnection(params || {});
@@ -56,16 +58,12 @@ module.exports.sessionBus = function(opts) {
  * @function
  * @param {boolean} compat - pass `true` to use JSBI.
  */
-module.exports.setBigIntCompat = require('./lib/library-options').setBigIntCompat
+export { setBigIntCompat };
 
-module.exports.NameFlag = constants.NameFlag;
-module.exports.RequestNameReply = constants.RequestNameReply;
-module.exports.ReleaseNameReply = constants.ReleaseNameReply;
-module.exports.MessageType = constants.MessageType;
-module.exports.MessageFlag = constants.MessageFlag;
+export { constants };
 
-module.exports.interface = iface;
-module.exports.Variant = Variant;
-module.exports.Message = Message;
-module.exports.validators = require('./lib/validators');
-module.exports.DBusError = errors.DBusError;
+export { iface as interface };
+export { Variant };
+export { Message }
+export { validators }
+export { errors }
